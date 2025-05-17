@@ -5,9 +5,9 @@ app = Flask(__name__)
 VERIFICATION_KEY = "Apple-Orchard-Banana-Cat-Dance86638663"
 
 @app.route('/ebay-notify', methods=['POST'])
-def notify():
+def ebay_notify():
     data = request.get_json()
-    challenge_code = data.get('challengeCode')
+    challenge_code = data.get("challengeCode")
 
     if challenge_code:
         return jsonify({
@@ -16,3 +16,8 @@ def notify():
         }), 200
     else:
         return jsonify({"error": "Missing challengeCode"}), 400
+
+# GET Handler
+@app.route('/ebay-notify', methods=['GET'])
+def ebay_notify_get():
+    return "OK", 200
